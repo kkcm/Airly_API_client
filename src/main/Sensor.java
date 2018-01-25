@@ -3,12 +3,12 @@ package main;
 import java.util.List;
 
 public class Sensor {
-    private Measurements measurements;
+    private Measurements currentMeasurements;
     private List<HistoryOrForecast> history;
     private List<HistoryOrForecast> forecast;
 
-    public Measurements getMeasurements() {
-        return measurements;
+    public Measurements getCurrentMeasurements() {
+        return currentMeasurements;
     }
 
     public List<HistoryOrForecast> getForecast() {

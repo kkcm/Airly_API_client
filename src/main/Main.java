@@ -1,20 +1,9 @@
 package main;
 
-
-import com.google.gson.*;
-import com.*;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.apache.commons.cli.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.Scanner;
+import java.io.*;
 import org.json.*;
+
 
 
 public class Main {
@@ -38,6 +27,10 @@ public class Main {
             System.out.println("Unexpected ParseException: " + ex.getMessage());
             formatter.printHelp( " ", options );
 
+        } catch (IOException ex){
+            System.out.println("IOException: " + ex.getMessage());
+        } catch (JSONException ex){
+            System.out.println("JSONException: " + ex.getMessage());
 //        } catch (TestException ex){
 //            System.out.println("TestException: " + ex.getMessage());
         } catch (IndexOutOfBoundsException ex){
@@ -45,26 +38,5 @@ public class Main {
         }
 
     }
+
 }
-
- /*
-
-
-     private static OkHttpClient client = new OkHttpClient();
-    public static String getJSON (String url) throws IOException{
-        Request request = new Request.Builder().url(url).build();
-
-        Response response = client.newCall(request).execute();
-        return response.body().string();
-    }
-
-   public static String[] getUserData (){
-        String json= null;
-        try{
-            json = getJSON("https://airapi.airly.eu/v1/mapPoint/measurements?latitude=50.06&longitude=19.93&apikey=fae55480ef384880871f8b40e77bbef9");
-            System.out.println(json);
-        } catch (Exception e ){
-            e.printStackTrace();
-        }
-
-        */
