@@ -48,7 +48,7 @@ public class CommandLineAnalizer {
             DataViewer view = new DataViewer(sensor, this.history);
             view.printData();
         } else {
-            throw new Exception("Brak wystarczających argumentów - sensora bądź współrzędnych.");
+            throw new Exception("Brak wystarczających argumentów do uruchomienia programu - sensora bądź współrzędnych.");
         }
     }
 }

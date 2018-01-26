@@ -144,8 +144,8 @@ public class DataViewer {
 
             System.out.println(sadFace);
         } else {
-            String angryFace = "                  .-''''''-.      \n" +
-                    "               .'  \\  //  '.     \n" +
+            String angryFace = "                 .-''''''-.      \n" +
+                    "               .'  \\  //   '.     \n" +
                     "              /   O      O   \\   \n" +
                     "             :                :   \n" +
                     "             |                |   \n" +

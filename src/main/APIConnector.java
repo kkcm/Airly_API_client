@@ -6,6 +6,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.*;
 
 
@@ -18,13 +19,13 @@ public class APIConnector {
     }
 
     public Sensor getIDtoNearestSensor(String latitude, String longitude) throws IOException, JSONException {
-        String url = "https://airapi.airly.eu/v1/nearestSensor/measurements?latitude=" + latitude + "&longitude=" + longitude;
+        String url = "https://airapi.airly.eu/v1/nearestSensor/measurements?latitude=" + latitude + "&longitude=" + longitude + "%20&maxDistance=1000";
         String jsonNearest = this.setConnection(url);
 
         JSONObject object = new JSONObject(jsonNearest);
 
         if (object.isNull("id")) {
-            throw new Exception("Nie znaleziono w pobliżu tej lokalizacji żadnego sensora");
+            throw new Exception("Nie znaleziono w pobliżu tej lokalizacji żadnego sensora.");
         } else {
             String sensorID = object.getString("id");
             Sensor sensor = this.getInfoFromSensor(sensorID);
@@ -35,6 +36,9 @@ public class APIConnector {
     public Sensor getInfoFromSensor(String sensorID) throws IOException {
         String url = "https://airapi.airly.eu/v1/sensor/measurements?sensorId=" + sensorID;
         String jsonSensor = this.setConnection(url);
+        if (jsonSensor.length() == 4659) {
+            throw new Exception("Pobrany JSON nie zawiera żadnych danych więc sensor nie istnieje, bądź nie wykonał żadnych pomiarów w ciągu ostatnich 24h.");
+        }
         Gson gson = new Gson();
         Sensor sensor = gson.fromJson(jsonSensor, Sensor.class);
         return sensor;
