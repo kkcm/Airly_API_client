@@ -45,13 +45,17 @@ public class CommandLineAnalizer {
         } else if (cmd.hasOption("sensor-id")){
             System.out.println("Połączę się z sensorem o id: " + cmd.getOptionValue("sensor-id"));
             this.connection = new APIConnector(this.apiKey);
-            Sensor sensor1 = connection.getInfoFromSensor(cmd.getOptionValue("sensor-id"));
-            System.out.println(sensor1.getCurrentMeasurements().getAirQualityIndex());
+            Sensor sensor = connection.getInfoFromSensor(cmd.getOptionValue("sensor-id"));
+            System.out.println(sensor.getCurrentMeasurements().getAirQualityIndex());
+            DataViewer view = new DataViewer(sensor, this.history);
+            view.printData();
         } else if (cmd.hasOption("longitude") && cmd.hasOption("latitude")){
             System.out.println("Połączę się z sensorem o współrzędnych najbliższych longitude " + cmd.getOptionValue("longitude") + " i latitude " + cmd.getOptionValue("latitude"));
             this.connection = new APIConnector(this.apiKey);
-            Sensor sensor2 = connection.getIDtoNearestSensor(cmd.getOptionValue("latitude"), cmd.getOptionValue("longitude"));
-            System.out.println(sensor2.getCurrentMeasurements().getAirQualityIndex());
+            Sensor sensor = connection.getIDtoNearestSensor(cmd.getOptionValue("latitude"), cmd.getOptionValue("longitude"));
+            System.out.println(sensor.getCurrentMeasurements().getAirQualityIndex());
+            DataViewer view = new DataViewer(sensor, this.history);
+            view.printData();
         }
         else {
             System.out.println("Brak wystarczających argumentów - sensora bądź współrzędnych.");
