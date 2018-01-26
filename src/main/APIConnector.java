@@ -36,7 +36,7 @@ public class APIConnector {
     public Sensor getInfoFromSensor(String sensorID) throws IOException {
         String url = "https://airapi.airly.eu/v1/sensor/measurements?sensorId=" + sensorID;
         String jsonSensor = this.setConnection(url);
-        if (jsonSensor.length() == 4659) {
+        if (jsonSensor.length() <= 4659) {
             throw new Exception("Pobrany JSON nie zawiera żadnych danych więc sensor nie istnieje, bądź nie wykonał żadnych pomiarów w ciągu ostatnich 24h.");
         }
         Gson gson = new Gson();
