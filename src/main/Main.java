@@ -5,9 +5,7 @@ import java.io.*;
 import org.json.*;
 
 
-
 public class Main {
-
 
     public static void main(String[] args) {
         Options options = new Options();
@@ -22,21 +20,17 @@ public class Main {
             cmd = parser.parse(options, args);
             CommandLineAnalizer cmdLineAnalizer = new CommandLineAnalizer(cmd, options);
             cmdLineAnalizer.optionReader();
-
-        } catch (ParseException ex){
+        } catch (ParseException ex) {
             System.out.println("Unexpected ParseException: " + ex.getMessage());
-            formatter.printHelp( " ", options );
-
-        } catch (IOException ex){
+            formatter.printHelp(" ", options);
+        } catch (IOException ex) {
             System.out.println("IOException: " + ex.getMessage());
-        } catch (JSONException ex){
+        } catch (JSONException ex) {
             System.out.println("JSONException: " + ex.getMessage());
-//        } catch (TestException ex){
-//            System.out.println("TestException: " + ex.getMessage());
-        } catch (IndexOutOfBoundsException ex){
-            System.out.println("IndexOutOfBoundsException: "+ ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        } catch (IndexOutOfBoundsException ex) {
+            System.out.println("IndexOutOfBoundsException: " + ex.getMessage());
         }
-
     }
-
 }

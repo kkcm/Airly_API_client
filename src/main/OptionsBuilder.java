@@ -13,13 +13,13 @@ public class OptionsBuilder {
     private Option history;
 
 
-    public OptionsBuilder(){
+    public OptionsBuilder() {
         this.help = new Option("h", "help", false, "wyświetla tą instrukcję -> -h");
 
         this.sensor = new Option("s", "sensor-id", true, "podaj numer sensoru -> np. -s 204");
         this.sensor.setArgs(1);
 
-        this.key = new Option("k", "api-key", true, "podaj klucz api -> np. -k fae55480ef384880871f8b40e77bbef9" );
+        this.key = new Option("k", "api-key", true, "podaj klucz api -> np. -k fae55480ef384880871f8b40e77bbef9");
         this.key.setArgs(1);
 
         this.latitude = new Option("lat", "latitude", true, "podaj szerokość geograficzną -> np. -lat 19.94");
@@ -31,7 +31,7 @@ public class OptionsBuilder {
         this.history = new Option("his", "history", false, "wyświetla historię jakości powietrza z ostatnich 24h -> np. -his");
     }
 
-    public Options addOptions (Options options){
+    public Options addOptions(Options options) {
 
         options.addOption(this.help);
         options.addOption(this.sensor);

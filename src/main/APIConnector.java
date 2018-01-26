@@ -17,14 +17,13 @@ public class APIConnector {
         this.apiKey = apiKey;
     }
 
-
     public Sensor getIDtoNearestSensor(String latitude, String longitude) throws IOException, JSONException {
         String url = "https://airapi.airly.eu/v1/nearestSensor/measurements?latitude=" + latitude + "&longitude=" + longitude;
         String jsonNearest = this.setConnection(url);
 
         JSONObject object = new JSONObject(jsonNearest);
 
-        if (object.isNull("id")){
+        if (object.isNull("id")) {
             throw new Exception("Nie znaleziono w pobliżu tej lokalizacji żadnego sensora");
         } else {
             String sensorID = object.getString("id");
@@ -33,12 +32,11 @@ public class APIConnector {
         }
     }
 
-
     public Sensor getInfoFromSensor(String sensorID) throws IOException {
         String url = "https://airapi.airly.eu/v1/sensor/measurements?sensorId=" + sensorID;
         String jsonSensor = this.setConnection(url);
         Gson gson = new Gson();
-        Sensor sensor = gson.fromJson (jsonSensor, Sensor.class);
+        Sensor sensor = gson.fromJson(jsonSensor, Sensor.class);
         return sensor;
     }
 
